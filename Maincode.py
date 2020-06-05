@@ -10,6 +10,11 @@ import datetime
 
 
 def test_stat(function, alpha, length_of_selection=None):
+    """"
+    function - a function calculating some statistics (e.g number of cherries) of a tree
+    alpha - 2 = no selection at the start, 1 = full selection
+    length_of_selection - fraction of coalescent events happening under selection
+    """
     stat_pack = []
     ntrees = 1000
     for i in range(ntrees):
@@ -33,6 +38,8 @@ def test_stat(function, alpha, length_of_selection=None):
     n, x, _ = plt.hist(stat_pack, bins=50, color="white", alpha=0.2, label=length_of_selection, density=True, histtype="step")
     plt.plot(x, density(x), color=color)
 
+# There go some relevant tree statistics
+
 def u_stat(tree):
     return [len(child.get_terminals())/len(tree.get_terminals()) for child in tree.root] if len(tree.root) == 2 else None
 
@@ -45,6 +52,8 @@ def number_of_cherries(tree):
 def colless_index(tree):
     return sum([abs(clade[0].weight-clade[1].weight) if len(clade) == 2 else 0 for clade in tree.find_clades()])
 
+
+# This function is analogous to "test_stat" but operates exclusively with AFS
 def allele_frequency_spectrum(alpha=2, color="red", length_of_selection = None):
     spectrums = []
     epochs = 1000
@@ -76,7 +85,11 @@ def allele_frequency_spectrum(alpha=2, color="red", length_of_selection = None):
     plt.yscale("log")
     plt.xscale("log")
 
+
 def afs_for_different_selection_periods():
+    """
+    run allele_frequency_spectrum() for 11 different selection modes (length_of_selection parameter) and draw the plots
+    """
     selections = np.linspace(0, 1, 11)
     # selections = [0]
     for selection in selections:
@@ -87,6 +100,7 @@ def afs_for_different_selection_periods():
     plt.xscale("log")
     plt.show()
 
+# Thus function is analogous to afs_for_different_selection_periods but operates with tree statistics
 def stats_for_different_selection_periods():
     selections = np.linspace(0, 1, 11).round(2)
     statistics = [u_stat, sackin_index, number_of_cherries, colless_index]
