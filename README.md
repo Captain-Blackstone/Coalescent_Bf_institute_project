@@ -2,6 +2,7 @@
 The repository of my 2nd semester project in Bioinfirmatics Institute.
 Goal:
 - To simulate soome trees to obtain a number of statictics and allele-frequency spectra for the coalescent with different amounts of selection.
+
 Objectives:
 - To find an apporpriate simulator (beta-tree)
 - To modify it in a way to fit our goal (done)
@@ -18,4 +19,3 @@ It contains my code used for obtaining distributions of different statistics and
 https://github.com/neherlab/betatree
 And modified it so that it now provides a possibility of switching between selection and neutrality periods. There really wasn't much to do, actually, so it's mostly original.
 There are also pictures I got. The name of a file corresponds to a statistics it represent. Not surprisingly. On each picture green line represents full selection mode (Bolthausen-Sznitman coalescent), red line - full neutrality mode (Kingsman coalescent) and the rest - intermediate states with step 0.1, the darker, the more neutral.
-
